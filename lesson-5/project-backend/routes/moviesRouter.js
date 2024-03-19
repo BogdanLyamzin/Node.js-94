@@ -10,12 +10,12 @@ const moviesRouter = express.Router();
 
 moviesRouter.get("/", moviesControllers.getAll);
 
-moviesRouter.get("/:id", moviesControllers.getById);
+// moviesRouter.get("/:id", moviesControllers.getById);
 
-moviesRouter.post("/", validateBody(movieAddSchema), moviesControllers.add);
+// moviesRouter.post("/", validateBody(movieAddSchema), moviesControllers.add);
 
-moviesRouter.put("/:id", validateBody(movieUpdateSchema), moviesControllers.updateById);
+// moviesRouter.put("/:id", validateBody(movieUpdateSchema), moviesControllers.updateById);
 
-moviesRouter.delete("/:id", moviesControllers.deleteById);
+// moviesRouter.delete("/:id", moviesControllers.deleteById);
 
 export default moviesRouter;

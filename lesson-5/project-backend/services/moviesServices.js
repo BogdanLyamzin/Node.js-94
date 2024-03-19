@@ -1,56 +1,46 @@
-import fs from "fs/promises";
-import path from "path";
-import { nanoid } from "nanoid";
+import Movie from "../models/Movie.js";
 
-const moviesPath = path.resolve("db", "movies.json");
+export const getAllMovies = () => Movie.find();
 
-const updateMovies = movies => fs.writeFile(moviesPath, JSON.stringify(movies, null, 2));
+// export const getMovieById = async (id) => {
+//     const movies = await getAllMovies();
+//     const result = movies.find(item => item.id === id);
 
-export const getAllMovies = async () => {
-    const data = await fs.readFile(moviesPath);
+//     return result || null;
+// }
 
-    return JSON.parse(data);
-}
+// export const addMovies = async (data) => {
+//     const movies = await getAllMovies();
+//     const newMovie = {
+//         id: nanoid(),
+//         ...data,
+//     };
+//     movies.push(newMovie);
+//     await updateMovies(movies);
 
-export const getMovieById = async (id) => {
-    const movies = await getAllMovies();
-    const result = movies.find(item => item.id === id);
+//     return newMovie;
+// }
 
-    return result || null;
-}
+// export const updateMovieById = async (id, data) => {
+//     const movies = await getAllMovies();
+//     const index = movies.findIndex(item => item.id === id);
+//     if (index === -1) {
+//         return null;
+//     }
+//     movies[index] = { ...movies[index], ...data };
+//     await updateMovies(movies);
 
-export const addMovies = async (data) => {
-    const movies = await getAllMovies();
-    const newMovie = {
-        id: nanoid(),
-        ...data,
-    };
-    movies.push(newMovie);
-    await updateMovies(movies);
+//     return movies[index];
+// }
 
-    return newMovie;
-}
+// export const deleteMovieById = async (id) => {
+//     const movies = await getAllMovies();
+//     const index = movies.findIndex(item => item.id === id);
+//     if (index === -1) {
+//         return null;
+//     }
+//     const [result] = movies.splice(index, 1);
+//     await updateMovies(movies);
 
-export const updateMovieById = async (id, data) => {
-    const movies = await getAllMovies();
-    const index = movies.findIndex(item => item.id === id);
-    if (index === -1) {
-        return null;
-    }
-    movies[index] = { ...movies[index], ...data };
-    await updateMovies(movies);
-
-    return movies[index];
-}
-
-export const deleteMovieById = async (id) => {
-    const movies = await getAllMovies();
-    const index = movies.findIndex(item => item.id === id);
-    if (index === -1) {
-        return null;
-    }
-    const [result] = movies.splice(index, 1);
-    await updateMovies(movies);
-
-    return result;
-}
+//     return result;
+// }
